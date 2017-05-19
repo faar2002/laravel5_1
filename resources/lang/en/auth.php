@@ -12,8 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'login_title'       => 'Login',
+    'login_action'      => 'Login',
+    'register_title'    => 'Register',
+    'register_button'   => 'Register',
+    'error_title'       => 'Errors',
+    'remember_login'    => 'Remember me',
+    'forgot_link'       => 'Forgot Your Password?',
+    'failed'            => 'These credentials do not match our records.',
+    'throttle'          => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
