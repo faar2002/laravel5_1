@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
     public function testBasicExample()
     {
         $this->visit('/')
-             ->see('Laravel 5');
+             ->see('Laravel 5.1')
+             ->see('You are using bootstrap');
     }
 }

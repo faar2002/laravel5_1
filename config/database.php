@@ -63,7 +63,21 @@ return [
             'prefix'    => '',
             'strict'    => false,
         ],
-
+        
+        /// se crea una conexion nueva para las pruebas y debe de ser declarada 
+        /// en el archivo phpunit.xml 
+        'mysql_tests' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('DB_DATABASE', 'forge').'_test',
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+        
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

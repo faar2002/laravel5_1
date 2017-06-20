@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
+    protected $redirectTo = '/login';
     /*
     |--------------------------------------------------------------------------
     | Password Reset Controller
@@ -28,5 +29,10 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+    
+    public function redirectPath() {
+        //return route('home');
+        return view('welcome');
     }
 }

@@ -15,30 +15,60 @@
   </head>
 
   <body>
+     <div id="app"> 
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            @if (Auth::guest())
-                <li><a href="login">Login</a></li>
-                <li><a href="register">Register</a></li>
-            @else
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
                     </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/auth/logout">Logout</a></li>
+                </div>
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">@lang('auth.home_title')</a></li>
+                        @if (Auth::check())
+                            <li><a href="{{ url('account') }}">@lang('auth.account')</a></li>
+                        @endif
+                        <!-- El alias Access fue declarado el archivo app.php que esta en la carpeta config-->
+                        @if (Auth::check() && Access::check(Auth::user()->role,'editor'))
+                            <li><a href="{{ url('publish') }}">Publish</a></li>
+                        @endif
                     </ul>
-                </li>
-            @endif
-        </ul>
-      </div>
-    </nav>
-    @yield('content')
+
+                    <!-- Right Side Of Navbar -->
+
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/login') }}">@lang('auth.login_title')</a></li>
+                            <li><a href="{{ url('/register') }}">@lang('auth.register_title')</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @yield('content')
+     </div>
     <!-- scripts -->
     
 
